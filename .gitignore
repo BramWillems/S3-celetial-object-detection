@@ -6,6 +6,7 @@ __pycache__/
 Data/
 8387071.zip
 DeepspaceYoloDataSet.zip
+DeepSpaceYoloDataSet/
 # C extensions
 *.so
 
