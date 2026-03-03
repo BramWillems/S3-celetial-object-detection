@@ -2,7 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+.venv
+Data/
+8387071.zip
+DeepspaceYoloDataSet.zip
 # C extensions
 *.so
 
