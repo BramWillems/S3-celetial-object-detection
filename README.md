@@ -11,3 +11,4 @@ Getting data out of images
 YOLO image models training and evaluating
 
 The first iteration of the model reached about 65% accuracy in objects detected and about 75% of the objects had mostly correct bounding boxes. Following this I did some more investigation of the data and found that there had been a few issues with cutoff images. Bettering this and using more in depth hyper parameters and a larger YOLO model I got the model to perform about 10% better
+![Output](https://github.com/BramWillems/S3-celetial-object-detection)
