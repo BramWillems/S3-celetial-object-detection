@@ -12,3 +12,6 @@ YOLO image models training and evaluating
 
 The first iteration of the model reached about 65% accuracy in objects detected and about 75% of the objects had mostly correct bounding boxes. Following this I did some more investigation of the data and found that there had been a few issues with cutoff images. Bettering this and using more in depth hyper parameters and a larger YOLO model I got the model to perform about 10% better
 ![Output](https://github.com/BramWillems/S3-celetial-object-detection/blob/main/comparison.jpg)
+
+
+For this project I used an a dataset that was already labeled in YOLO format, ![link](https://zenodo.org/records/8387071), this dataset contains 4096 annotated images that contain one of the following: emission/reflection/dark/planetary nebula, galaxies, globular/open clusters. The data is made form a few large images that have been captured from telescopes around europe for the MILAN research project. The high resolution immages have been cut into 608x608 patches.
