@@ -1,17 +1,50 @@
-# Detecting objects in astrological images
+# Detecting Objects in Astronomical Images
 
-In this project the goal was to check astrological images if there is any of the marked objects, this is done to make it easier for hobbist astrologers without much knowledge yet to know if there are any interesting objects in the image they took with their telescope.
+Automatically detecting interesting objects (galaxies, nebulae, star clusters)
+in amateur telescope images, so hobbyist astronomers can tell if they've
+captured something worth a closer look.
 
-Let's assume you on a telescope, but this is your first time looking through it, hat are you looking at? Is there anything interesting? how would you know? This project is intented for this audience. In this project we take a reliable dataset (link to data) and use this to train a YOLO model to check if any of your home made images contain anything interesting, this could be a for example be galaxy, gas cloud or even reflections of this. After analyzing the dataset for outliers, this can for example be an image with a bounding box too small. We train a YOLO image recognition model, this model is a pre-built model that can be trained on image detection tasks. This model also had different sizes which are compared and the best one is chosen. At the end inference is checked to make sure this model can run on different devices.
+## The problem
 
-skills: <br>
-Python programming in jupyter notebook
-editing and reorganising image data
-Getting data out of images
-YOLO image models training and evaluating
+Imagine looking through a telescope for the first time. What are you actually
+looking at? Is there anything interesting in the image? Without experience,
+it's hard to tell. This project trains a model to answer that question
+automatically from a home-made telescope image.
 
-The first iteration of the model reached about 65% accuracy in objects detected and about 75% of the objects had mostly correct bounding boxes. Following this I did some more investigation of the data and found that there had been a few issues with cutoff images. Bettering this and using more in depth hyper parameters and a larger YOLO model I got the model to perform about 10% better
-![Output](https://github.com/BramWillems/S3-celetial-object-detection/blob/main/comparison.jpg)
+## Result
 
+![Model comparison](https://github.com/BramWillems/S3-celetial-object-detection/blob/main/comparison.jpg)
 
-For this project I used an a dataset that was already labeled in YOLO format, ![link](https://zenodo.org/records/8387071), this dataset contains 4096 annotated images that contain one of the following: emission/reflection/dark/planetary nebula, galaxies, globular/open clusters. The data is made form a few large images that have been captured from telescopes around europe for the MILAN research project. The high resolution immages have been cut into 608x608 patches.
+The first version of the model reached about 65% detection accuracy, with
+roughly 75% of detected objects having mostly correct bounding boxes. After
+fixing data issues (see below) and using a larger model with tuned
+hyperparameters, performance improved by about 10%.
+
+## Data
+
+The dataset (from the [MILAN research project](https://zenodo.org/records/8387071))
+contains 4096 images pre-labeled in YOLO format, covering emission/reflection/dark/
+planetary nebulae, galaxies, and globular/open clusters. The images are 608x608
+patches cut from larger telescope captures taken across Europe.
+
+One issue in the raw data: some objects were cut off at the patch edges,
+which hurt training. I wrote a function to check bounding box size and
+distance from the edge, then manually reviewed and cleaned flagged cases.
+
+## Method
+
+- Trained a YOLO object detection model (pre-built architecture, fine-tuned
+  on this dataset)
+- Compared multiple YOLO model sizes and selected the best-performing one
+- Checked inference speed across different devices to confirm the model is
+  practical to run outside a training environment
+
+## Skills used
+
+Python (Jupyter notebooks), image data cleaning and reorganization,
+extracting data from images, training and evaluating YOLO models
+
+## What I learned
+
+How to work with and fine-tune a pre-trained model, and how to extract and
+manage data derived directly from images rather than a clean tabular source.
